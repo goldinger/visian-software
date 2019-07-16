@@ -8,17 +8,6 @@
         "destination": "/index.html"
       }
     ],
-    "redirects": [
-      {
-        "source": "/",
-        "destination": "https://reduction-admin.github.io/react-reduction/",
-        "type": 301
-      },
-      {
-        "source": "/**",
-        "destination": "https://reduction-admin.github.io/react-reduction/",
-        "type": 301
-      }
-    ]
+    "redirects": []
   }
 }
