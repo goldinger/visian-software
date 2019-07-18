@@ -8,6 +8,7 @@ const ProjectStepCard = (
     img,
     title,
     progress,
+    onClick,
     ...restProps
   }) => {
   return (
@@ -16,7 +17,14 @@ const ProjectStepCard = (
       <CardBody>
         <CardTitle><h5>{title}</h5></CardTitle>
         <CardText>
-          <Button block color="primary">Poursuivre</Button>
+          <Button
+            block
+            color={progress === 0 ? "danger" : "primary"}
+            disabled={progress === 0}
+            onClick={onClick}
+          >
+            {progress === 0 ? "Verrouillé" : "Poursuivre"}
+          </Button>
         </CardText>
         <CardFooter>
           <Progress
@@ -37,10 +45,12 @@ ProjectStepCard.propTypes = {
   img: PropTypes.string,
   title: PropTypes.string,
   progress: PropTypes.number,
+  onClick: PropTypes.func
 };
 
 ProjectStepCard.defaultProps = {
   progress: 0,
+  onClick: () => {}
 };
 
 export default ProjectStepCard;
