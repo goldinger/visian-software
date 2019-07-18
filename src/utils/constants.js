@@ -35,7 +35,7 @@ export const NOTIFICATION_SYSTEM_STYLE = {
 
     info: {
       borderTop: 0,
-      background: 'linear-gradient(to right, #6a82fb, #fc5c7d)',
+      background: 'linear-gradient(to right, #000000, #E3422C)',
       WebkitBoxShadow: 0,
       MozBoxShadow: 0,
       boxShadow: 0,

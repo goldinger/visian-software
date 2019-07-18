@@ -77,7 +77,7 @@ export const chartjs = {
       datasets: [
         {
           label: 'My First dataset',
-          borderColor: '#6a82fb',
+          borderColor: '#000000',
           backgroundColor: '#bcc7ff',
           data: [0, 13, 22, 34, 46, 35, 30],
           fill: 'origin',
@@ -116,7 +116,7 @@ export const chartjs = {
       datasets: [
         {
           label: 'My First dataset',
-          borderColor: '#6a82fb',
+          borderColor: '#000000',
           backgroundColor: '#bcc7ff',
           data: [0, 13, 22, 34, 46, 35, 30],
           fill: 'origin',
@@ -221,7 +221,7 @@ export const chartJsGradient = {
               .color('#ffffff')
               .alpha(0)
               .rgbString(),
-            pointHoverBackgroundColor: '#fc5c7d',
+            pointHoverBackgroundColor: '#E3422C',
             pointHoverBorderColor: ChartJS.helpers
               .color('#000000')
               .alpha(0.2)
