@@ -174,7 +174,7 @@ class ProjectsPage extends React.Component {
                         <Button
                           outline
                           onClick={() => this.showDocuments(title, documents)}
-                          color={"info"}>
+                          color="secondary">
                           Voir la documentation
                         </Button>
                       </td>
