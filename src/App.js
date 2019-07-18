@@ -40,7 +40,7 @@ class App extends React.Component {
 
             <MainLayout breakpoint={this.props.breakpoint}>
               <React.Suspense fallback={<PageSpinner />}>
-                <Route exact path="/" component={DashboardPage} />
+                <Route exact path="/" component={ProjectsPage} />
                 <Route exact path="/projects" component={ProjectsPage} />
               </React.Suspense>
             </MainLayout>
