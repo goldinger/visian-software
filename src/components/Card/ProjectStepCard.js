@@ -5,7 +5,6 @@ import { Card, CardTitle, CardText, CardBody, CardImg, Button, CardFooter, Progr
 
 const ProjectStepCard = (
   {
-    img,
     title,
     progress,
     onClick,
@@ -13,20 +12,9 @@ const ProjectStepCard = (
   }) => {
   return (
     <Card {...restProps}>
-      <CardImg top src={img} />
       <CardBody>
         <CardTitle><h5>{title}</h5></CardTitle>
         <CardText>
-          <Button
-            block
-            color={progress === 0 ? "danger" : "primary"}
-            disabled={progress === 0}
-            onClick={onClick}
-          >
-            {progress === 0 ? "Verrouillé" : "Poursuivre"}
-          </Button>
-        </CardText>
-        <CardFooter>
           <Progress
             striped
             animated
@@ -35,7 +23,15 @@ const ProjectStepCard = (
             className="mb-3">
             {progress > 0 && progress}{progress > 0 && "%"}
           </Progress>
-        </CardFooter>
+          <Button
+            block
+            outline
+            color="primary"
+            onClick={onClick}
+          >
+            Voir les Tâches
+          </Button>
+        </CardText>
       </CardBody>
     </Card>
   );
