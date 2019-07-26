@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'utils/propTypes';
-import { Card, CardTitle, CardText, CardBody, CardImg, Button, CardFooter, Progress } from 'reactstrap';
+import { Card, CardTitle, CardText, CardBody, Button, Progress } from 'reactstrap';
 
 
 const ProjectStepCard = (

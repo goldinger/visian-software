@@ -8,7 +8,6 @@ import componentQueries from 'react-component-queries';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import './styles/reduction.scss';
 
-const DashboardPage = React.lazy(() => import('pages/DashboardPage'));
 const ProjectsPage = React.lazy(() => import('pages/ProjectsPage'));
 
 const getBasename = () => {

@@ -12,12 +12,10 @@ import {
   ModalBody,
   ModalFooter,
   Button,
-  Modal, Container,
+  Modal,
 } from 'reactstrap';
 import ProjectStepCard from '../components/Card/ProjectStepCard';
-import CardText from 'reactstrap/es/CardText';
-import CardTitle from 'reactstrap/es/CardTitle';
-
+import TasksManagerComponent from '../components/TasksManagerComponent';
 
 
 class ProjectsPage extends React.Component {
@@ -27,7 +25,7 @@ class ProjectsPage extends React.Component {
     tasks: [],
     modalOpened: false,
     modalDocuments: [],
-    task: ''
+    task: '',
   };
 
   componentWillMount() {
@@ -147,7 +145,9 @@ class ProjectsPage extends React.Component {
           </Col>
         </Row>
 
+        <TasksManagerComponent />
         { this.state.step &&
+
         <Row>
           <Col>
             <Card>
