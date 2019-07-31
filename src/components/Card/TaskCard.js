@@ -39,7 +39,7 @@ export default class TaskCard extends React.Component {
           </ModalHeader>
           <ModalBody>
             {this.props.task.documents.map(({name, source}, index) => (
-              <div><Button onClick={() => window.open(source)} color="link">
+              <div><Button onClick={() => window.open(source)} color="secondary">
                 {name}
               </Button>
                 <br />
