@@ -21,8 +21,7 @@ import TasksManagerComponent from '../components/TasksManagerComponent';
 class ProjectsPage extends React.Component {
   state = {
     allStepsData: {},
-    step: null,
-    tasks: [],
+    stepData: null,
     modalOpened: false,
     modalDocuments: [],
     task: '',
@@ -32,10 +31,12 @@ class ProjectsPage extends React.Component {
     this.setState({
       allStepsData:{
         1: {
+          id: 1,
           step: 'Pré-Expérimentation',
           progress: 50,
           tasks: [
             {
+              id: 'rgpd',
               title: 'RGPD',
               description: 'Vérifier que votre projet respecte le RGPD',
               done: false,
@@ -51,6 +52,7 @@ class ProjectsPage extends React.Component {
               ]
             },
             {
+              id: 'prop-intelec',
               title: 'Propriété intellectuelle',
               description: 'Vérifier la propriété intellectuelle',
               done: true,
@@ -64,16 +66,19 @@ class ProjectsPage extends React.Component {
           ]
         },
         2: {
+          id: 2,
           step: 'Expérimentation',
           progress: 0,
           tasks: []
         },
         3: {
+          id: 3,
           step: 'Pré-Industrialisation',
           progress: 0,
           tasks: []
         },
         4: {
+          id: 4,
           step: 'Industrialisation',
           progress: 0,
           tasks: []
@@ -89,19 +94,19 @@ class ProjectsPage extends React.Component {
 
   onPreExpClick() {
     let stepData = this.state.allStepsData[1];
-    this.setState(stepData)
+    this.setState({stepData: stepData})
   }
   onExpClick() {
     let stepData = this.state.allStepsData[2];
-    this.setState(stepData)
+    this.setState({stepData: stepData})
   }
   onPreIndClick() {
     let stepData = this.state.allStepsData[3];
-    this.setState(stepData)
+    this.setState({stepData: stepData})
   }
   onIndClick() {
     let stepData = this.state.allStepsData[4];
-    this.setState(stepData)
+    this.setState({stepData: stepData})
   }
 
   toggle = () => {
@@ -122,21 +127,25 @@ class ProjectsPage extends React.Component {
           <Col>
             <CardGroup style={{ marginBottom: '1rem' }}>
               <ProjectStepCard
+                selected={this.state.stepData && this.state.stepData.id === 1}
                 title={"1. " + this.state.allStepsData[1].step}
                 progress={this.state.allStepsData[1].progress}
                 onClick={this.onPreExpClick.bind(this)}
               />
               <ProjectStepCard
+                selected={this.state.stepData && this.state.stepData.id === 2}
                 title={"2. " + this.state.allStepsData[2].step}
                 progress={this.state.allStepsData[2].progress}
                 onClick={this.onExpClick.bind(this)}
               />
               <ProjectStepCard
+                selected={this.state.stepData && this.state.stepData.id === 3}
                 title={"3. " + this.state.allStepsData[3].step}
                 progress={this.state.allStepsData[3].progress}
                 onClick={this.onPreIndClick.bind(this)}
               />
               <ProjectStepCard
+                selected={this.state.stepData && this.state.stepData.id === 4}
                 title={"4. " + this.state.allStepsData[4].step}
                 progress={this.state.allStepsData[4].progress}
                 onClick={this.onIndClick.bind(this)}
@@ -145,13 +154,13 @@ class ProjectsPage extends React.Component {
           </Col>
         </Row>
 
-        <TasksManagerComponent />
-        { this.state.step &&
+        { this.state.stepData && <TasksManagerComponent stepData={this.state.stepData} />}
+        { this.state.stepData &&
 
         <Row>
           <Col>
             <Card>
-              <CardHeader>{this.state.step}</CardHeader>
+              <CardHeader>{this.state.stepData.step}</CardHeader>
               <CardBody>
                 <Table responsive hover>
                   <thead>
@@ -163,7 +172,7 @@ class ProjectsPage extends React.Component {
                   </tr>
                   </thead>
                   <tbody>
-                  {this.state.tasks.map(({ title, description, done, documents }, index) => (
+                  {this.state.stepData.tasks.map(({ title, description, done, documents }, index) => (
                     <tr
                       onClick={() => this.showDocuments(title, documents)}
                       key={index}>

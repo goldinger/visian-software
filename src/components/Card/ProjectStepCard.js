@@ -5,15 +5,20 @@ import { Card, CardTitle, CardText, CardBody, Button, Progress } from 'reactstra
 
 const ProjectStepCard = (
   {
+    selected,
     title,
     progress,
     onClick,
     ...restProps
   }) => {
   return (
-    <Card {...restProps}>
+    <Card
+      style={selected ? {backgroundColor: '#BDBDBD'} : {}}
+      {...restProps}>
       <CardBody>
-        <CardTitle><h5>{title}</h5></CardTitle>
+        <CardTitle>
+          <h5 className={selected ? 'text-white': 'text-primary'}>{title}</h5>
+        </CardTitle>
         <CardText>
           <Progress
             striped
@@ -26,10 +31,11 @@ const ProjectStepCard = (
           <Button
             block
             outline
-            color="primary"
+            color={selected ? 'white': 'primary'}
             onClick={onClick}
+            disabled={selected}
           >
-            Voir les Tâches
+            {selected ? 'Sélectionné' : 'Voir les Tâches'}
           </Button>
         </CardText>
       </CardBody>

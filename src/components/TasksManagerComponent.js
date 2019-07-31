@@ -1,5 +1,7 @@
 import React from 'react';
 import TaskColumn from './TaskColumn';
+import PropTypes from 'prop-types';
+import { Row } from 'reactstrap';
 
 export default class TasksManagerComponent extends React.Component {
   state = {
@@ -24,14 +26,30 @@ export default class TasksManagerComponent extends React.Component {
   };
 
   render() {
+    let todo = {
+      id: "todo",
+      title: "To-Do",
+      tasks: this.props.stepData.tasks.filter((task) => !task.done)
+    };
+    let done = {
+      id: "done",
+      title: "Done",
+      tasks: this.props.stepData.tasks.filter(task => task.done)
+    };
     return (
-      <div style={{width: '100%', padding: "32px", display: "flex", "justify-content": "center"}}>
-        {this.state.columnOrder.map(columnId => {
-          const column = this.state.columns[columnId];
-          const tasks = column.taskIds.map(taskId => this.state.tasks[taskId]);
-          return <TaskColumn key={column.id} column={column} tasks={tasks}/>
-        })}
-      </div>
+      <Row style={{width: '100%', padding: "32px", display: "flex", "justify-content": "center"}}>
+        <TaskColumn column={todo} tasks={todo.tasks} />
+        <TaskColumn column={done} tasks={done.tasks} />
+        {/*{this.state.columnOrder.map(columnId => {*/}
+        {/*  const column = this.state.columns[columnId];*/}
+        {/*  const tasks = column.taskIds.map(taskId => this.state.tasks[taskId]);*/}
+        {/*  return <TaskColumn key={column.id} column={column} tasks={tasks}/>*/}
+        {/*})}*/}
+      </Row>
     )
   }
 }
+
+TasksManagerComponent.propTypes = {
+  stepData: PropTypes.object
+};

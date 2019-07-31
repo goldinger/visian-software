@@ -1,17 +1,23 @@
 import React from 'react'
 import TaskCard from './Card/TaskCard';
 import Droppable from './Dnd/Droppable';
+import { Card, Col, CardHeader, CardBody} from 'reactstrap';
+
 export default class Column extends React.Component {
   render() {
     return (
-      <div>
-        <h3>{this.props.column.title}</h3>
-        <Droppable id={this.props.column.id} style={{backgroundColor: '#555', width: '250px', height: '400px', margin: '32px'}}>
-          <div>
-              {this.props.tasks.map((task, index) => <TaskCard task={task} key={task.id} index={index}/>)}
-            </div>
-        </Droppable>
-      </div>
+      <Col>
+        <Card style={{height: '100%'}}>
+          <CardHeader><h3 style={{'text-align': 'center'}}>{this.props.column.title}</h3></CardHeader>
+          <CardBody style={{backgroundColor: '#E0E0E0', padding: '0px'}}>
+            <Droppable id={this.props.column.id} style={{ padding: '10px', paddingBottom: '100px', width: '100%', height: '100%'}}>
+              <div>
+                {this.props.tasks.map((task) => <TaskCard task={task} key={task.id}/>)}
+              </div>
+            </Droppable>
+          </CardBody>
+        </Card>
+      </Col>
     );
   }
 }
