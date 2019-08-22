@@ -94,19 +94,19 @@ class ProjectsPage extends React.Component {
 
   onPreExpClick() {
     let stepData = this.state.allStepsData[1];
-    this.setState({stepData: stepData})
+    this.setState({step: 1})
   }
   onExpClick() {
     let stepData = this.state.allStepsData[2];
-    this.setState({stepData: stepData})
+    this.setState({step: 2})
   }
   onPreIndClick() {
     let stepData = this.state.allStepsData[3];
-    this.setState({stepData: stepData})
+    this.setState({step: 3})
   }
   onIndClick() {
     let stepData = this.state.allStepsData[4];
-    this.setState({stepData: stepData})
+    this.setState({step: 4})
   }
 
   toggle = () => {
@@ -154,70 +154,70 @@ class ProjectsPage extends React.Component {
           </Col>
         </Row>
 
-        { this.state.stepData && <TasksManagerComponent stepData={this.state.stepData} />}
-        { this.state.stepData &&
+        { this.state.step && <TasksManagerComponent step={this.state.step} />}
+        {/*{ this.state.stepData &&*/}
 
-        <Row>
-          <Col>
-            <Card>
-              <CardHeader>{this.state.stepData.step}</CardHeader>
-              <CardBody>
-                <Table responsive hover>
-                  <thead>
-                  <tr className="text-capitalize align-middle text-center">
-                    <th>Done</th>
-                    <th>Task Name</th>
-                    <th>Description</th>
-                    <th>Documents</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  {this.state.stepData.tasks.map(({ title, description, done, documents }, index) => (
-                    <tr
-                      onClick={() => this.showDocuments(title, documents)}
-                      key={index}>
-                      <td className="align-middle text-center">{done ? "Yes" : "No"}</td>
-                      <td className="align-middle text-center">{title}</td>
-                      <td className="align-middle text-center">{description}</td>
-                      <td className="align-middle text-center">
-                        <Button
-                          outline
-                          onClick={() => this.showDocuments(title, documents)}
-                          color="secondary">
-                          Voir la documentation
-                        </Button>
-                      </td>
-                    </tr>
-                  ))}
-                  </tbody>
-                </Table>
-                <Modal
-                  isOpen={this.state.modalOpened}
-                  toggle={this.toggle}
-                  backdrop>
-                  <ModalHeader toggle={this.toggle}>
-                    {this.state.modalTask}
-                  </ModalHeader>
-                  <ModalBody>
-                    {this.state.modalDocuments.map(({name, source}, index) => (
-                      <div><Button onClick={() => window.open(source)} color="link">
-                        {name}
-                      </Button>
-                        <br />
-                      </div>
-                    ))}
-                  </ModalBody>
-                  <ModalFooter>
-                    <Button color="danger" onClick={this.toggle}>
-                      Fermer
-                    </Button>
-                  </ModalFooter>
-                </Modal>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
-        }
+        {/*<Row>*/}
+        {/*  <Col>*/}
+        {/*    <Card>*/}
+        {/*      <CardHeader>{this.state.stepData.step}</CardHeader>*/}
+        {/*      <CardBody>*/}
+        {/*        <Table responsive hover>*/}
+        {/*          <thead>*/}
+        {/*          <tr className="text-capitalize align-middle text-center">*/}
+        {/*            <th>Done</th>*/}
+        {/*            <th>Task Name</th>*/}
+        {/*            <th>Description</th>*/}
+        {/*            <th>Documents</th>*/}
+        {/*          </tr>*/}
+        {/*          </thead>*/}
+        {/*          <tbody>*/}
+        {/*          {this.state.stepData.tasks.map(({ title, description, done, documents }, index) => (*/}
+        {/*            <tr*/}
+        {/*              onClick={() => this.showDocuments(title, documents)}*/}
+        {/*              key={index}>*/}
+        {/*              <td className="align-middle text-center">{done ? "Yes" : "No"}</td>*/}
+        {/*              <td className="align-middle text-center">{title}</td>*/}
+        {/*              <td className="align-middle text-center">{description}</td>*/}
+        {/*              <td className="align-middle text-center">*/}
+        {/*                <Button*/}
+        {/*                  outline*/}
+        {/*                  onClick={() => this.showDocuments(title, documents)}*/}
+        {/*                  color="secondary">*/}
+        {/*                  Voir la documentation*/}
+        {/*                </Button>*/}
+        {/*              </td>*/}
+        {/*            </tr>*/}
+        {/*          ))}*/}
+        {/*          </tbody>*/}
+        {/*        </Table>*/}
+        {/*        <Modal*/}
+        {/*          isOpen={this.state.modalOpened}*/}
+        {/*          toggle={this.toggle}*/}
+        {/*          backdrop>*/}
+        {/*          <ModalHeader toggle={this.toggle}>*/}
+        {/*            {this.state.modalTask}*/}
+        {/*          </ModalHeader>*/}
+        {/*          <ModalBody>*/}
+        {/*            {this.state.modalDocuments.map(({name, source}, index) => (*/}
+        {/*              <div><Button onClick={() => window.open(source)} color="link">*/}
+        {/*                {name}*/}
+        {/*              </Button>*/}
+        {/*                <br />*/}
+        {/*              </div>*/}
+        {/*            ))}*/}
+        {/*          </ModalBody>*/}
+        {/*          <ModalFooter>*/}
+        {/*            <Button color="danger" onClick={this.toggle}>*/}
+        {/*              Fermer*/}
+        {/*            </Button>*/}
+        {/*          </ModalFooter>*/}
+        {/*        </Modal>*/}
+        {/*      </CardBody>*/}
+        {/*    </Card>*/}
+        {/*  </Col>*/}
+        {/*</Row>*/}
+        {/*}*/}
       </Page>
     );
   }

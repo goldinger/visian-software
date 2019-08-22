@@ -5,11 +5,7 @@ import { Row } from 'reactstrap';
 
 export default class TasksManagerComponent extends React.Component {
   state = {
-    tasks: {
-      task1: { id: 'task1', content: 'hello1' },
-      task3: { id: 'task3', content: 'hello3' },
-      task2: { id: 'task2', content: 'hello2' }
-    },
+    tasks: [],
     columns: {
       column1: {
         id: 'column1',
@@ -25,16 +21,29 @@ export default class TasksManagerComponent extends React.Component {
     columnOrder: ['column1', 'column2']
   };
 
+  componentWillMount() {
+    let component = this;
+    fetch('https://ezratp.sghir.me/api/stations?stationName=chatelet')
+      .then((response) => {console.log(response); return response.json()})
+      .then((responseJson) => {
+        component.setState({tasks: responseJson});
+        console.log(responseJson);
+        console.log(component.state.tasks);
+      })
+      .catch((error) => {console.error(error);});
+  }
+
   render() {
+    let step = this.props.step;
     let todo = {
       id: "todo",
       title: "To-Do",
-      tasks: this.props.stepData.tasks.filter((task) => !task.done)
+      tasks: this.state.tasks.filter((task) => (!task.done && task.step === step))
     };
     let done = {
       id: "done",
       title: "Done",
-      tasks: this.props.stepData.tasks.filter(task => task.done)
+      tasks: this.state.tasks.filter(task => (task.done && task.step === step))
     };
     return (
       <Row style={{width: '100%', padding: "32px", display: "flex", "justify-content": "center"}}>
@@ -51,5 +60,5 @@ export default class TasksManagerComponent extends React.Component {
 }
 
 TasksManagerComponent.propTypes = {
-  stepData: PropTypes.object
+  step: PropTypes.number
 };

@@ -17,7 +17,7 @@ export default class TaskCard extends React.Component {
         <Draggable id={this.props.task.id} style={{marginBottom: '10px', cursor: 'grab'}}>
           <Card>
             <CardHeader style={{display: "flex", flexDirection: 'row', 'justify-content': 'space-between'}}>
-              <h5>{this.props.task.title}</h5>
+              <h5>{this.props.task.tasktitle}</h5>
               <Button
                 block
                 outline
@@ -26,7 +26,7 @@ export default class TaskCard extends React.Component {
                 style={{width: '120px'}}
               >Documents</Button>
             </CardHeader>
-            <CardBody>{this.props.task.description}</CardBody>
+            <CardBody>{this.props.task.taskdescription}</CardBody>
           </Card>
 
         </Draggable>
@@ -35,7 +35,7 @@ export default class TaskCard extends React.Component {
           toggle={this.toggle}
           backdrop>
           <ModalHeader toggle={this.toggle}>
-            {this.props.task.title}
+            {this.props.task.tasktitle}
           </ModalHeader>
           <ModalBody>
             {this.props.task.documents.map(({name, source}, index) => (
