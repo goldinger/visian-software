@@ -23,7 +23,7 @@ export default class TasksManagerComponent extends React.Component {
 
   componentWillMount() {
     let component = this;
-    fetch('https://ezratp.sghir.me/api/stations?stationName=chatelet')
+    fetch('https://visian-api.sghir.me/projects/1')
       .then((response) => {console.log(response); return response.json()})
       .then((responseJson) => {
         component.setState({tasks: responseJson});
