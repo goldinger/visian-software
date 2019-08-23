@@ -127,25 +127,25 @@ class ProjectsPage extends React.Component {
           <Col>
             <CardGroup style={{ marginBottom: '1rem' }}>
               <ProjectStepCard
-                selected={this.state.stepData && this.state.stepData.id === 1}
+                selected={this.state.step === 1}
                 title={"1. " + this.state.allStepsData[1].step}
                 progress={this.state.allStepsData[1].progress}
                 onClick={this.onPreExpClick.bind(this)}
               />
               <ProjectStepCard
-                selected={this.state.stepData && this.state.stepData.id === 2}
+                selected={this.state.step === 2}
                 title={"2. " + this.state.allStepsData[2].step}
                 progress={this.state.allStepsData[2].progress}
                 onClick={this.onExpClick.bind(this)}
               />
               <ProjectStepCard
-                selected={this.state.stepData && this.state.stepData.id === 3}
+                selected={this.state.step === 3}
                 title={"3. " + this.state.allStepsData[3].step}
                 progress={this.state.allStepsData[3].progress}
                 onClick={this.onPreIndClick.bind(this)}
               />
               <ProjectStepCard
-                selected={this.state.stepData && this.state.stepData.id === 4}
+                selected={this.state.step === 4}
                 title={"4. " + this.state.allStepsData[4].step}
                 progress={this.state.allStepsData[4].progress}
                 onClick={this.onIndClick.bind(this)}
