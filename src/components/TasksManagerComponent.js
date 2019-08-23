@@ -21,34 +21,38 @@ export default class TasksManagerComponent extends React.Component {
     columnOrder: ['column1', 'column2']
   };
 
-  componentWillMount() {
+  refreshTasks() {
     let component = this;
     fetch('https://visian-api.sghir.me/projects/1')
-      .then((response) => {console.log(response); return response.json()})
+      .then((response) => response.json())
       .then((responseJson) => {
         component.setState({tasks: responseJson});
-        console.log(responseJson);
-        console.log(component.state.tasks);
       })
       .catch((error) => {console.error(error);});
+  }
+
+  componentWillMount() {
+    this.refreshTasks()
   }
 
   render() {
     let step = this.props.step;
     let todo = {
       id: "todo",
+      done: 0,
       title: "To-Do",
-      tasks: this.state.tasks.filter((task) => (!task.done && task.step === step))
+      tasks: this.state.tasks.filter((task) => (task.done === 0 && task.taskstep === step))
     };
     let done = {
       id: "done",
+      done: 1,
       title: "Done",
-      tasks: this.state.tasks.filter(task => (task.done && task.step === step))
+      tasks: this.state.tasks.filter(task => (task.done === 1 && task.taskstep === step))
     };
     return (
       <Row style={{width: '100%', padding: "32px", display: "flex", "justify-content": "center"}}>
-        <TaskColumn column={todo} tasks={todo.tasks} />
-        <TaskColumn column={done} tasks={done.tasks} />
+        <TaskColumn column={todo} tasks={todo.tasks} refreshTasks={this.refreshTasks.bind(this)}/>
+        <TaskColumn column={done} tasks={done.tasks} refreshTasks={this.refreshTasks.bind(this)}/>
         {/*{this.state.columnOrder.map(columnId => {*/}
         {/*  const column = this.state.columns[columnId];*/}
         {/*  const tasks = column.taskIds.map(taskId => this.state.tasks[taskId]);*/}
