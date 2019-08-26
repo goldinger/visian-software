@@ -25,6 +25,7 @@ class ProjectsPage extends React.Component {
     modalOpened: false,
     modalDocuments: [],
     task: '',
+    tasks: [],
   };
 
   componentWillMount() {
@@ -87,8 +88,19 @@ class ProjectsPage extends React.Component {
   }
 
 
+  refreshTasks() {
+    let component = this;
+    fetch('https://visian-api.sghir.me/projects/1')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        component.setState({tasks: responseJson});
+      })
+      .catch((error) => {console.error(error);});
+  }
+
   componentDidMount() {
     // this is needed, because InfiniteCalendar forces window scroll
+    this.refreshTasks();
     window.scrollTo(0, 0);
   }
 
@@ -118,6 +130,10 @@ class ProjectsPage extends React.Component {
   }
 
   render() {
+    let progress1 = Math.round((100 * this.state.tasks.filter(task => (task.done === 1 && task.taskstep === 1)).length)/(this.state.tasks.filter(task => (task.taskstep === 1)).length));
+    let progress2 = Math.round((100 * this.state.tasks.filter(task => (task.done === 1 && task.taskstep === 2)).length)/(this.state.tasks.filter(task => (task.taskstep === 2)).length));
+    let progress3 = Math.round((100 * this.state.tasks.filter(task => (task.done === 1 && task.taskstep === 3)).length)/(this.state.tasks.filter(task => (task.taskstep === 3)).length));
+    let progress4 = Math.round((100 * this.state.tasks.filter(task => (task.done === 1 && task.taskstep === 4)).length)/(this.state.tasks.filter(task => (task.taskstep === 4)).length));
     return (
       <Page
         className="ProjectsPage"
@@ -129,32 +145,32 @@ class ProjectsPage extends React.Component {
               <ProjectStepCard
                 selected={this.state.step === 1}
                 title={"1. " + this.state.allStepsData[1].step}
-                progress={this.state.allStepsData[1].progress}
+                progress={progress1}
                 onClick={this.onPreExpClick.bind(this)}
               />
               <ProjectStepCard
                 selected={this.state.step === 2}
                 title={"2. " + this.state.allStepsData[2].step}
-                progress={this.state.allStepsData[2].progress}
+                progress={progress2}
                 onClick={this.onExpClick.bind(this)}
               />
               <ProjectStepCard
                 selected={this.state.step === 3}
                 title={"3. " + this.state.allStepsData[3].step}
-                progress={this.state.allStepsData[3].progress}
+                progress={progress3}
                 onClick={this.onPreIndClick.bind(this)}
               />
               <ProjectStepCard
                 selected={this.state.step === 4}
                 title={"4. " + this.state.allStepsData[4].step}
-                progress={this.state.allStepsData[4].progress}
+                progress={progress4}
                 onClick={this.onIndClick.bind(this)}
               />
             </CardGroup>
           </Col>
         </Row>
 
-        { this.state.step && <TasksManagerComponent step={this.state.step} />}
+        { this.state.step && <TasksManagerComponent step={this.state.step} tasks={this.state.tasks} refreshTasks={this.refreshTasks.bind(this)}/>}
         {/*{ this.state.stepData &&*/}
 
         {/*<Row>*/}
