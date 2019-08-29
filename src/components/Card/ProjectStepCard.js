@@ -9,8 +9,12 @@ const ProjectStepCard = (
     title,
     progress,
     onClick,
+    overview,
     ...restProps
   }) => {
+  if (overview) {
+    selected = false
+  }
   return (
     <Card
       style={selected ? {backgroundColor: '#BDBDBD'} : {}}
@@ -28,15 +32,17 @@ const ProjectStepCard = (
             className="mb-3">
             {progress > 0 && progress}{progress > 0 && "%"}
           </Progress>
+          {!overview &&
           <Button
             block
             outline
-            color={selected ? 'white': 'primary'}
+            color={selected ? 'white' : 'primary'}
             onClick={onClick}
             disabled={selected}
           >
             {selected ? 'Sélectionné' : 'Voir les Tâches'}
           </Button>
+          }
         </CardText>
       </CardBody>
     </Card>

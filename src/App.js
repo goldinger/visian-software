@@ -9,6 +9,7 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import './styles/reduction.scss';
 
 const ProjectsPage = React.lazy(() => import('pages/ProjectsPage'));
+const OverviewPage = React.lazy(() => import('pages/OverviewPage'));
 
 const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split('/').pop()}`;
@@ -39,8 +40,8 @@ class App extends React.Component {
 
             <MainLayout breakpoint={this.props.breakpoint}>
               <React.Suspense fallback={<PageSpinner />}>
-                <Route exact path="/" component={ProjectsPage} />
-                <Route exact path="/projects" component={ProjectsPage} />
+                <Route exact path="/" component={OverviewPage} />
+                <Route exact path="/project/:projectId" component={ProjectsPage} />
               </React.Suspense>
             </MainLayout>
             <Redirect to="/" />

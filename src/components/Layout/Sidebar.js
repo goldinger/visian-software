@@ -5,9 +5,13 @@ import React from 'react';
 import {
   MdDashboard,
   MdWeb,
+  MdGroupWork,
+  MdExtension,
+  MdKeyboardArrowDown,
 } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
 import {
+  Collapse,
   // UncontrolledTooltip,
   Nav,
   Navbar,
@@ -24,16 +28,15 @@ const sidebarBackground = {
 
 const navItems = [
   { to: '/', name: 'Accueil', exact: true, Icon: MdDashboard },
-  { to: '/projects', name: 'Projets', exact: false, Icon: MdWeb },
 ];
+
 
 const bem = bn.create('sidebar');
 
 class Sidebar extends React.Component {
   state = {
-    isOpenComponents: true,
-    isOpenContents: true,
-    isOpenPages: true,
+    isOpenProjects: true,
+    projects: []
   };
 
   handleClick = name => () => {
@@ -45,6 +48,14 @@ class Sidebar extends React.Component {
       };
     });
   };
+  componentWillMount() {
+    let component = this;
+    fetch('https://visian-api.sghir.me/getProjectsByEntityId/1')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        component.setState({projects: responseJson})
+      })
+  }
 
   render() {
     return (
@@ -78,6 +89,50 @@ class Sidebar extends React.Component {
                 </BSNavLink>
               </NavItem>
             ))}
+
+            <NavItem
+              className={bem.e('nav-item')}
+              onClick={this.handleClick('Projects')}
+            >
+              <BSNavLink className={bem.e('nav-item-collapse')}>
+                <div className="d-flex">
+                  <MdExtension className={bem.e('nav-item-icon')} />
+                  <span className=" align-self-start">PROJETS</span>
+                </div>
+                <MdKeyboardArrowDown
+                  className={bem.e('nav-item-icon')}
+                  style={{
+                    padding: 0,
+                    transform: this.state.isOpenProjects
+                      ? 'rotate(0deg)'
+                      : 'rotate(-90deg)',
+                    transitionDuration: '0.3s',
+                    transitionProperty: 'transform',
+                  }}
+                />
+              </BSNavLink>
+            </NavItem>
+            <Collapse isOpen={this.state.isOpenProjects}>
+              {this.state.projects.map(({ id, entity, title, description }, index) => {
+                console.log('/project/' + id);
+                return (
+                  <NavItem key={index} className={bem.e('nav-item')}>
+                    <BSNavLink
+                      id={`navItem-${title}-${index}`}
+                      className="text-uppercase"
+                      tag={NavLink}
+                      to={'/project/' + id}
+                      activeClassName="active"
+                      exact={false}
+                      onClick={this.forceUpdate}
+                    >
+                      <MdGroupWork className={bem.e('nav-item-icon')} />
+                      <span className="">{title}</span>
+                    </BSNavLink>
+                  </NavItem>
+                )})
+              }
+            </Collapse>
           </Nav>
         </div>
       </aside>
