@@ -3,7 +3,7 @@ import React from 'react';
 import {
   CardGroup,
   Row,
-  Col, CardTitle,
+  Col,
 } from 'reactstrap';
 import ProjectStepCard from '../components/Card/ProjectStepCard';
 

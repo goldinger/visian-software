@@ -44,7 +44,7 @@ class App extends React.Component {
                 <Route exact path="/project/:projectId" component={ProjectsPage} />
               </React.Suspense>
             </MainLayout>
-            <Redirect to="/" />
+            {/*<Redirect to="/" />*/}
           </Switch>
         </GAListener>
       </BrowserRouter>

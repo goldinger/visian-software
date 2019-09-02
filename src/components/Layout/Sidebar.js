@@ -4,7 +4,6 @@ import SourceLink from 'components/SourceLink';
 import React from 'react';
 import {
   MdDashboard,
-  MdWeb,
   MdGroupWork,
   MdExtension,
   MdKeyboardArrowDown,
@@ -114,7 +113,6 @@ class Sidebar extends React.Component {
             </NavItem>
             <Collapse isOpen={this.state.isOpenProjects}>
               {this.state.projects.map(({ id, entity, title, description }, index) => {
-                console.log('/project/' + id);
                 return (
                   <NavItem key={index} className={bem.e('nav-item')}>
                     <BSNavLink
