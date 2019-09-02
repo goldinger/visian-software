@@ -55,6 +55,10 @@ class ProjectsPage extends React.Component {
   };
 
   render() {
+    let projectTitle = "Projet";
+    if (this.state.tasks.length > 0) {
+      projectTitle = this.state.tasks[0].projecttitle
+    }
     let progress1 = Math.round((100 * this.state.tasks.filter(task => (task.done === 1 && task.taskstep === 1)).length)/(this.state.tasks.filter(task => (task.taskstep === 1)).length));
     let progress2 = Math.round((100 * this.state.tasks.filter(task => (task.done === 1 && task.taskstep === 2)).length)/(this.state.tasks.filter(task => (task.taskstep === 2)).length));
     let progress3 = Math.round((100 * this.state.tasks.filter(task => (task.done === 1 && task.taskstep === 3)).length)/(this.state.tasks.filter(task => (task.taskstep === 3)).length));
@@ -62,7 +66,7 @@ class ProjectsPage extends React.Component {
     return (
       <Page
         className="ProjectsPage"
-        title="Projets"
+        title={projectTitle}
       >
         <Row>
           <Col>
