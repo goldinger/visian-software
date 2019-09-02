@@ -119,7 +119,7 @@ class Sidebar extends React.Component {
                       id={`navItem-${title}-${index}`}
                       className="text-uppercase"
                       tag={NavLink}
-                      to={'/'}
+                      to={'/project/' + id}
                       activeClassName="active"
                       exact={false}
                       onClick={this.forceUpdate}
