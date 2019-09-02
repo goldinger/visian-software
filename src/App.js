@@ -41,10 +41,10 @@ class App extends React.Component {
             <MainLayout breakpoint={this.props.breakpoint}>
               <React.Suspense fallback={<PageSpinner />}>
                 <Route exact path="/" component={OverviewPage} />
-                <Route exact path="/project/:projectId" component={ProjectsPage} />
+                {/*<Route exact path="/project/:projectId" component={ProjectsPage} />*/}
               </React.Suspense>
             </MainLayout>
-            {/*<Redirect to="/" />*/}
+            <Redirect to="/" />
           </Switch>
         </GAListener>
       </BrowserRouter>
