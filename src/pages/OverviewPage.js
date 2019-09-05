@@ -56,7 +56,7 @@ class OverviewPage extends React.Component {
           let progress3 = Math.round((100 * tasks.filter(task => (task.done === 1 && task.taskstep === 3)).length)/(tasks.filter(task => (task.taskstep === 3)).length));
           let progress4 = Math.round((100 * tasks.filter(task => (task.done === 1 && task.taskstep === 4)).length)/(tasks.filter(task => (task.taskstep === 4)).length));
           return (
-            <Row key={key} onClick={() => {this.props.history.push('/project/' + tasks[0].projectid)}}>
+            <Row key={key} onClick={() => {this.props.history.push('/project' + tasks[0].projectid)}}>
               <Col>
                 <h3>{tasks[0].projecttitle}</h3>
                 <CardGroup style={{ marginBottom: '1rem' }}>
