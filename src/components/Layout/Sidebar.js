@@ -122,7 +122,7 @@ class Sidebar extends React.Component {
                       to={'/' + id}
                       activeClassName="active"
                       exact={false}
-                      onClick={this.forceUpdate}
+                      onClick={() => {this.props.history.push('/' + id)}}
                     >
                       <MdGroupWork className={bem.e('nav-item-icon')} />
                       <span className="">{title}</span>
