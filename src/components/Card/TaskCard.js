@@ -79,7 +79,7 @@ export default class TaskCard extends React.Component {
             {this.props.task.tasktitle}
           </ModalHeader>
           <ModalBody>
-            {this.props.task.documents.length > 0 && <h4>Documents</h4> }
+            {this.props.task.documents.length > 0 && <h3>Documents :</h3> }
             {this.props.task.documents.map(({name, source}, index) => (
               <div><Button onClick={() => window.open(source)} color="link">
                 - {name}
@@ -90,6 +90,8 @@ export default class TaskCard extends React.Component {
 
             { this.props.task.tasktypeid === 7 &&
             <div>
+              <br/>
+              <h3>Aide :</h3>
               <h6>Assurez vous que les 3 points suivants sont vérifiés, sinon la solution n'est pas brevetable</h6>
               <ul>Votre solution est :
                 <li>Nouvelle : C’est-à-dire pas connu du grand public</li>
