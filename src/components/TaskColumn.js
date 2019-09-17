@@ -12,7 +12,7 @@ export default class Column extends React.Component {
           <CardBody style={{backgroundColor: '#E0E0E0', padding: '0px'}}>
             <Droppable id={this.props.column.id} onDrop={this.props.refreshTasks} done={this.props.column.done} style={{ padding: '10px', paddingBottom: '100px', width: '100%', height: '100%'}}>
               <div>
-                {this.props.tasks.map((task) => <TaskCard task={task} key={task.id}/>)}
+                {this.props.tasks.map((task) => <TaskCard task={task} key={task.id} refreshTasks={this.props.refreshTasks}/>)}
               </div>
             </Droppable>
           </CardBody>

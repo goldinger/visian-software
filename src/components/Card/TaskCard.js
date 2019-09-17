@@ -17,6 +17,7 @@ import {
 export default class TaskCard extends React.Component {
   state = {
     modalOpened: false,
+    noteModalOpened: false,
     piformOpened: false,
   };
 
@@ -24,9 +25,26 @@ export default class TaskCard extends React.Component {
     this.setState({modalOpened: !this.state.modalOpened});
   };
 
+  toggleNote = () => {
+    this.setState({noteModalOpened: !this.state.noteModalOpened});
+  };
+
   togglePiform = () => {
     this.setState({piformOpened: !this.state.piformOpened});
   };
+
+  setNote() {
+    let note = document.getElementById('note').value;
+    let component = this;
+    fetch('https://visian-api.sghir.me/tasks/' + this.props.task.id + '/setNote',{
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({note: note})
+    }).then((response) => {component.props.refreshTasks(); component.toggleNote()});
+  }
 
   onPiButtonClick() {
     let container = document.getElementById("piform");
@@ -64,8 +82,15 @@ export default class TaskCard extends React.Component {
                 outline
                 color="info"
                 onClick={this.toggle}
-                style={{width: '120px'}}
+                style={{width: '100px'}}
               >Aide</Button>
+              <Button
+                block
+                outline
+                color="info"
+                onClick={this.toggleNote}
+                style={{width: '80px'}}
+              >Note</Button>
             </CardHeader>
             <CardBody>{this.props.task.taskdescription}</CardBody>
           </Card>
@@ -107,11 +132,29 @@ export default class TaskCard extends React.Component {
             </Button>
           </ModalFooter>
         </Modal>
+
+        <Modal
+          isOpen={this.state.noteModalOpened}
+          toggle={this.toggleNote}
+          backdrop>
+          <ModalHeader toggle={this.toggleNote}>
+            {this.props.task.tasktitle}
+          </ModalHeader>
+          <ModalBody>
+            <textarea id="note" type="text" rows="10">{this.props.task.note}</textarea>
+            <Button onClick={this.setNote.bind(this)} color="primary">Enregistrer</Button>
+          </ModalBody>
+          <ModalFooter>
+            <Button color="danger" onClick={this.toggleNote}>
+              Fermer
+            </Button>
+          </ModalFooter>
+        </Modal>
         <Modal
           isOpen={this.state.piformOpened}
           toggle={this.togglePiform}
           backdrop>
-          <ModalHeader toggle={this.toggle}>
+          <ModalHeader toggle={this.togglePiform}>
             Evaluation du besoin de brevet.
           </ModalHeader>
           <ModalBody>
@@ -336,7 +379,6 @@ export default class TaskCard extends React.Component {
           </ModalFooter>
         </Modal>
       </div>
-
     )
   }
 }

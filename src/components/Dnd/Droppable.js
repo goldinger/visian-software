@@ -8,7 +8,7 @@ export default class Droppable extends React.Component {
     const data = e.dataTransfer.getData('transfer');
     let component = this;
     // e.target.appendChild(document.getElementById(data))
-    fetch('https://visian-api.sghir.me/tasks/' + data, {
+    fetch('https://visian-api.sghir.me/tasks/' + data + '/setDone', {
       method: 'POST',
       mode: 'no-cors',
       headers: {
