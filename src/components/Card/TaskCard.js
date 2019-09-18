@@ -13,6 +13,7 @@ import {
   ModalFooter,
   ModalHeader,
 } from 'reactstrap';
+import {MdNote} from 'react-icons/md';
 
 export default class TaskCard extends React.Component {
   state = {
@@ -77,20 +78,24 @@ export default class TaskCard extends React.Component {
           <Card>
             <CardHeader style={{display: "flex", flexDirection: 'row', 'justify-content': 'space-between'}}>
               <h5>{this.props.task.tasktitle}</h5>
-              <Button
-                block
-                outline
-                color="info"
-                onClick={this.toggle}
-                style={{width: '100px'}}
-              >Aide</Button>
-              <Button
-                block
-                outline
-                color="info"
-                onClick={this.toggleNote}
-                style={{width: '80px'}}
-              >Note</Button>
+              <div style={{display: "flex", flexDirection: "row"}}>
+                <Button
+                  block
+                  outline
+                  color="info"
+                  onClick={this.toggle}
+                  style={{width: '70px', height: '40px'}}
+                >Aide
+                </Button>
+                <Button
+                  block
+                  outline
+                  color="warning"
+                  onClick={this.toggleNote}
+                  style={{width: '48px', height: '40px', marginTop: '0px', marginLeft: '10px'}}
+                ><MdNote color="warning" size="24px"/>
+                </Button>
+              </div>
             </CardHeader>
             <CardBody>{this.props.task.taskdescription}</CardBody>
           </Card>
@@ -141,7 +146,7 @@ export default class TaskCard extends React.Component {
             {this.props.task.tasktitle}
           </ModalHeader>
           <ModalBody>
-            <textarea id="note" type="text" rows="10">{this.props.task.note}</textarea>
+            <textarea style={{width: '100%', marginBottom: '15px'}} id="note" type="text" rows="5">{this.props.task.note}</textarea>
             <Button onClick={this.setNote.bind(this)} color="primary">Enregistrer</Button>
           </ModalBody>
           <ModalFooter>
