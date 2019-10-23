@@ -1,6 +1,7 @@
 import React from 'react'
 import Draggable from '../Dnd/Draggable';
 import {
+  Badge,
   Button,
   Card,
   CardBody,
@@ -77,15 +78,24 @@ export default class TaskCard extends React.Component {
         <Draggable id={this.props.task.id} style={{marginBottom: '10px', cursor: 'grab'}}>
           <Card>
             <CardHeader style={{display: "flex", flexDirection: 'row', 'justify-content': 'space-between'}}>
-              <h5>{this.props.task.tasktitle}</h5>
+              <div style={{display: "flex", flexDirection: "column"}}>
+                <h5>{this.props.task.tasktitle}</h5>
+                <div>
+                  { this.props.task.labels.map((label) => {
+                    return <Badge color={label.color} pill className="mr-1">
+                      {label.name}
+                    </Badge>
+                  })}
+                </div>
+              </div>
               <div style={{display: "flex", flexDirection: "row"}}>
                 <Button
                   block
                   outline
                   color="info"
                   onClick={this.toggle}
-                  style={{width: '70px', height: '40px'}}
-                >Aide
+                  style={{width: '40px', height: '40px'}}
+                >?
                 </Button>
                 <Button
                   block
@@ -126,7 +136,8 @@ export default class TaskCard extends React.Component {
               <ul>Votre solution est :
                 <li>Nouvelle : C’est-à-dire pas connu du grand public</li>
                 <li>Inventive : C’est-à-dire non-évidente pour l’homme du métier</li>
-                <li>À application industrielle : C’est-à-dire si l’objet de la solution peut être fabriqué ou utilisé dans tout genre d’industrie.</li> </ul>
+                <li>À application industrielle : C’est-à-dire si l’objet de la solution peut être fabriqué ou utilisé dans tout genre d’industrie.</li>
+              </ul>
               <Button onClick={this.togglePiform} color="info">Evaluer le besoin de brevet</Button>
             </div>
             }
