@@ -139,7 +139,7 @@ const InputGroupPage = () => {
                 <UncontrolledButtonDropdown addonType="append">
                   <DropdownToggle caret>
                     Button Dropdown
-            </DropdownToggle>
+                  </DropdownToggle>
                   <DropdownMenu>
                     <DropdownItem header>Header</DropdownItem>
                     <DropdownItem disabled>Action</DropdownItem>

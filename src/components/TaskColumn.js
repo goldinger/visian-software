@@ -3,10 +3,10 @@ import TaskCard from './Card/TaskCard';
 import Droppable from './Dnd/Droppable';
 import { Card, Col, CardHeader, CardBody} from 'reactstrap';
 
-export default class Column extends React.Component {
+export default class TaskColumn extends React.Component {
   render() {
     return (
-      <Col>
+      <Col style={{padding: 0}}>
         <Card style={{height: '100%'}}>
           <CardHeader><h3 style={{'text-align': 'center'}}>{this.props.column.title}</h3></CardHeader>
           <CardBody style={{backgroundColor: '#E0E0E0', padding: '0px'}}>

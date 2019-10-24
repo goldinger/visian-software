@@ -82,7 +82,7 @@ export default class TaskCard extends React.Component {
                 <h5>{this.props.task.tasktitle}</h5>
                 <div>
                   { this.props.task.labels.map((label) => {
-                    return <Badge color={label.color} pill className="mr-1">
+                    return <Badge style={{margin: 3, backgroundColor: label.color}} pill className="mr-1">
                       {label.name}
                     </Badge>
                   })}

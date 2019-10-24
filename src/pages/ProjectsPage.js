@@ -70,7 +70,7 @@ class ProjectsPage extends React.Component {
       >
         <Row>
           <Col>
-            <CardGroup style={{ marginBottom: '1rem' }}>
+            <CardGroup>
               <ProjectStepCard
                 selected={this.state.step === 1}
                 title={"1. Pré-Expérimentation"}
